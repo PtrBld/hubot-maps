@@ -11,6 +11,7 @@ module.exports = (robot) ->
     origin      = msg.match[3]
     destination = msg.match[4]
     key         = process.env.HUBOT_GOOGLE_API_KEY
+    markdown    = process.env.HUBOT_MAPS_MARKDOWN == 'true'
 
     if origin == destination
       return msg.send "Now you're just being silly."
@@ -68,6 +69,9 @@ module.exports = (robot) ->
               location +
               "&t=m&z=11"
 
-    msg.send mapUrl
-    msg.send url
-
+    if markdown
+      msg.send "![mapUrl](#{mapUrl})"
+      msg.send url
+    else
+      msg.send mapUrl
+      msg.send url
