@@ -4,6 +4,9 @@
 # Commands:
 #   hubot map me <query> - Returns a map view of the area returned by `query`.
 
+
+mdOut = process.env.HUBOT_MAPS_MARKDOWN == 'true'
+
 module.exports = (robot) ->
 
   robot.respond /((driving|walking|bike|biking|bicycling) )?directions from (.+) to (.+)/i, (msg) ->
@@ -11,7 +14,6 @@ module.exports = (robot) ->
     origin      = msg.match[3]
     destination = msg.match[4]
     key         = process.env.HUBOT_GOOGLE_API_KEY
-    markdown    = process.env.HUBOT_MAPS_MARKDOWN == 'true'
 
     if origin == destination
       return msg.send "Now you're just being silly."
@@ -49,8 +51,12 @@ module.exports = (robot) ->
         response += "#{i}. #{instructions} (#{step.distance.text})\n"
         i++
 
-      msg.send "http://maps.googleapis.com/maps/api/staticmap?size=400x400&" +
+      mapUrl = "http://maps.googleapis.com/maps/api/staticmap?size=400x400&" +
                "path=weight:3%7Ccolor:red%7Cenc:#{route.overview_polyline.points}&sensor=false"
+      if mdOut
+        msg.send "![mapUrl](#{mapUrl})"
+      else
+        msg.send mapUrl
       msg.send response
     )
 
@@ -69,7 +75,7 @@ module.exports = (robot) ->
               location +
               "&t=m&z=11"
 
-    if markdown
+    if mdOut
       msg.send "![mapUrl](#{mapUrl})"
       msg.send url
     else
