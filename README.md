@@ -12,7 +12,7 @@ hubot directions from <origin> to <destination> - Returns a map and list of dire
 Environment Variables
 ---------------------
 Follow the instructions for obtaining an API key here:
-https://developers.google.com/maps/documentation/javascript/tutorial#api\_key
+https://developers.google.com/maps/documentation/javascript/tutorial#api_key
 
 Once you have an API key, set it as the value for the HUBOT\_GOOGLE\_API\_KEY environment variable.
 
