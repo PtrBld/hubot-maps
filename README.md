@@ -14,4 +14,8 @@ Environment Variables
 Follow the instructions for obtaining an API key here:
 https://developers.google.com/maps/documentation/javascript/tutorial#api_key
 
-Once you have an API key, set it as the value for the HUBOT_GOOGLE_API_KEY environment variable.
+Once you have an API key, set it as the value for the HUBOT\_GOOGLE\_API\_KEY environment variable.
+
+Markdown
+--------
+You can enable Markdown output by setting the environment variable HUBOT\_MAPS\_MARKDOWN to `true`
