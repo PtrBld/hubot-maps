@@ -2,7 +2,8 @@
 #   Interacts with the Google Maps API.
 #
 # Commands:
-#   hubot map me <query> - Returns a map view of the area returned by `query`.
+# hubot satellite|terrain|hybrid map me <query> - Returns a map view of the area returned by `query`.
+# hubot driving|walking|bike|biking|bicycling from <start> to <end>
 
 
 mdOut = process.env.HUBOT_MAPS_MARKDOWN == 'true'
@@ -51,7 +52,7 @@ module.exports = (robot) ->
         response += "#{i}. #{instructions} (#{step.distance.text})\n"
         i++
 
-      mapUrl = "http://maps.googleapis.com/maps/api/staticmap?size=400x400&" +
+      mapUrl = "https://maps.googleapis.com/maps/api/staticmap?size=400x400&" +
                "path=weight:3%7Ccolor:red%7Cenc:#{route.overview_polyline.points}&sensor=false"
       if mdOut
         msg.send "![mapUrl](#{mapUrl})"
@@ -69,7 +70,7 @@ module.exports = (robot) ->
                 mapType +
                 "&sensor=false" +
                 "&format=png" # So campfire knows it's an image
-    url      = "http://maps.google.com/maps?q=" +
+    url      = "https://maps.google.com/maps?q=" +
                location +
               "&hl=en&sll=37.0625,-95.677068&sspn=73.579623,100.371094&vpsrc=0&hnear=" +
               location +
