@@ -3,7 +3,7 @@
 #
 # Commands:
 # hubot satellite|terrain|hybrid map me <query> - Returns a map view of the area returned by `query`.
-# hubot driving|walking|bike|biking|bicycling from <start> to <end>
+# hubot driving|walking|bike|biking|bicycling directions from <start> to <end>
 
 
 mdOut = process.env.HUBOT_MAPS_MARKDOWN == 'true'
